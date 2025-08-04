@@ -1,0 +1,531 @@
+/* 메인 */
+@font-face {
+    font-family: 'NanumSquareNeo';
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-bRg.eot);
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-bRg.eot?#iefix) format("embedded-opentype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-bRg.woff) format("woff"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-bRg.ttf) format("truetype");
+}
+
+/* 타이틀 */
+@font-face {
+    font-family: 'JalnanGothic';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* WORK 백그라운드 */
+@font-face {
+    font-family: 'TTHakgyoansimKkwabaegiR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimKkwabaegiR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: 'NanumSquareNeo';
+    background: #fff;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    backdrop-filter: blur(0px);
+    background-color: transparent;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.title {
+    font-family: 'JalnanGothic';
+    position: absolute;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-50%);
+    font-size: 17px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+.headerMenu {
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.headerMenu div {
+    color: #222;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.main {
+    width: 100%;
+}
+
+.portfolio {
+    position: relative;
+    width: 100%;
+    height: 93vh;
+    z-index: 1;
+}
+
+.portfolioContent {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 10vw;
+}
+
+#portfolioTitle {
+    font-family: 'JalnanGothic';
+    font-size: clamp(50px, 7vw, 150px);
+    font-weight: 400;
+    color: #333;
+    background: linear-gradient(90deg, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722, #ef5350);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+#portfolioDescription {
+    font-size: clamp(15px, 0.96vw, 20px);
+    /* font-size: 0.96vw; */
+    margin-top: 50px;
+    padding-right: 50px;
+    color: #222;
+    line-height: clamp(22px, 2vw, 35px);
+}
+
+/* 포트폴리오 원형 그라디언트 배경 */
+:root {
+    --color-bg1: rgb(255, 255, 255);
+    --color-bg2: rgb(255, 255, 255);
+    --color1: 190, 240, 200;
+    /* 파스텔 민트 그린 */
+    --color2: 160, 210, 180;
+    /* 부드러운 세이지 그린 */
+    --color3: 200, 225, 250;
+    /* 파스텔 베이비 블루 */
+    --color4: 170, 200, 230;
+    /* 잔잔한 파우더 블루 */
+    --color5: 220, 245, 230;
+    /* 연한 에메랄드 민트 */
+    --color-interactive: 180, 230, 220;
+    /* 인터랙션용 청록빛 포인트 */
+    --circle-size: 60%;
+    --blending: soft-light;
+}
+
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+
+    50% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+
+    50% {
+        transform: translateX(50%) translateY(10%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+}
+
+
+.gradient-bg {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+.gradient-bg svg {
+    display: none;
+}
+
+.gradients-container {
+    /* filter: url(#goo) blur(40px); */
+    filter: blur(40px);
+    width: 100%;
+    height: 100%;
+}
+
+.g1,
+.g2,
+.g3,
+.g4,
+.g5,
+.interactive {
+    position: absolute;
+    mix-blend-mode: var(--blending);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.g1 {
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: center center;
+    animation: moveVertical 30s ease infinite;
+    opacity: 1;
+}
+
+.g2 {
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 400px);
+    animation: moveInCircle 20s reverse infinite;
+    opacity: 1;
+}
+
+.g3 {
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2 + 200px);
+    left: calc(50% - var(--circle-size) / 2 - 500px);
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 40s linear infinite;
+    opacity: 1;
+}
+
+.g4 {
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 200px);
+    animation: moveHorizontal 40s ease infinite;
+    opacity: 0.7;
+}
+
+.g5 {
+    background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%);
+    width: calc(var(--circle-size) * 2);
+    height: calc(var(--circle-size) * 2);
+    top: calc(50% - var(--circle-size));
+    left: calc(50% - var(--circle-size));
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+    animation: moveInCircle 20s ease infinite;
+    opacity: 1;
+}
+
+.interactive {
+    background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%);
+    width: 100%;
+    height: 100%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.7;
+}
+
+/* 포트폴리오 원형 그라디언트 배경 여기까지 */
+
+/* 작업공간 */
+.work {
+    width: 100%;
+    height: auto;
+    background: #FAFAFA;
+    padding: 170px 0;
+    overflow: hidden;
+}
+
+.workTitle {
+    font-family: 'JalnanGothic';
+    font-size: clamp(30px, 2vw, 35px);
+    font-weight: 400;
+    color: #333;
+    margin-left: 10vw;
+    position: relative;
+    z-index: 2;
+}
+
+.scrollText {
+    font-family: 'TTHakgyoansimKkwabaegiR';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 70px;
+    font-size: clamp(50px, 7vw, 140px);
+    font-weight: 800;
+    color: #FAFAFA;
+    text-shadow:
+        -2px -2px 0 rgba(0, 0, 0, 0.1),
+        2px -2px 0 rgba(0, 0, 0, 0.1),
+        -2px 2px 0 rgba(0, 0, 0, 0.1),
+        2px 2px 0 rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* 작업물 아이템 리스트 */
+.workList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.workItem {
+    position: relative;
+    z-index: 10;
+}
+
+.workImage {
+    width: clamp(650px, 47vw, 750px);
+    height: clamp(200px, 50vh, 400px);
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.workImage:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+.workImage img {
+    width: 100%;
+    height: 100%;
+}
+
+.workDec {
+    display: flex;
+    flex-direction: column;
+    margin-top: clamp(10px, 2.5vh, 40px);
+    margin-left: clamp(5px, 1.5vw, 20px);
+    margin-bottom: clamp(20px, 4vh, 60px);
+    gap: 15px;
+}
+
+.workDecTitle {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.workDecDec {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ABOUT */
+.about {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 170px 0;
+    z-index: 1;
+}
+
+.aboutTitle {
+    font-family: 'JalnanGothic';
+    font-size: clamp(30px, 2vw, 35px);
+    font-weight: 400;
+    color: #333;
+    margin-left: 10vw;
+    position: relative;
+    z-index: 2;
+}
+
+.aboutContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(50px, 15vw, 200px);
+    margin-top: 5vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.profileImage img {
+    width: clamp(200px, 20vw, 300px);
+    height: clamp(200px, 20vw, 300px);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#profileName {
+    font-size: clamp(18px, 2.3vw, 28px);
+    font-weight: 800;
+    margin-bottom: 1vw;
+    background: linear-gradient(90deg, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722, #ef5350);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+#profileDec {
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.5;
+}
+
+#DiscordId {
+    font-size: clamp(14px, 1.5vw, 15px);
+    margin-top: 1.3vw;
+    margin-bottom: 0.5vw;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#legendFrog {
+    background: linear-gradient(90deg, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722, #ef5350);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+#gotoDiscord {
+    width: clamp(120px, 15vw, 180px);
+    transition: all 0.3s ease;
+}
+
+#gotoDiscord:hover {
+    color: #285bb9;
+    transform: translateX(10px);
+}
+
+#gotoDiscord a {
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.5;
+    color: #1f47b6;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    color: #222;
+    font-size: 11px;
+}
+
+.footer div:nth-child(1) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 70px;
+}
+
+.footer div:nth-child(2) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 70px;
+}
+
+/* 포트폴리오 타이틀 애니메이션 */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 반응형: 화면이 작아지면 한 줄로 배치 */
+@media (max-width: 768px) {
+    .workList {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .aboutContent {
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .workImage {
+        width: clamp(280px, 90vw, 500px);
+        height: clamp(180px, 40vh, 300px);
+    }
+}
