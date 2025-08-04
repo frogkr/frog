@@ -530,5 +530,4 @@ body {
         width: clamp(280px, 90vw, 500px);
         height: clamp(180px, 40vh, 300px);
     }
-
 }
